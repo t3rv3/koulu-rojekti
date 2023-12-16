@@ -1,17 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>URI Game</title>
 </head>
 <body>
-    <button id="button"></button>
+    <div class="border2">
+    <div class="otsikko">
+        <h1>URI Game</h1>
+            <p id="calculus"></p>
+            <input type="text" id="answer" placeholder="Enter your answer here"><br><br>
+            <button id="command">Check Answer</button>
+    </div>
+    <div class="kuva2">
+        <img src="https://img.freepik.com/free-vector/businessman-with-grumpy-facial-expression_1308-133614.jpg?w=740&t=st=1701761162~exp=1701761762~hmac=7be4f70b91422aff38ed6cee44a5cfcdd4a32fbe22f2463b360ad4b10a40068d" width="100" height="auto">
+    </div>
+    </div>
+    <script>
+    var btn = document.getElementById("command");
+    var input = document.getElementById("answer");
+    var values, indexOfValueToSolve, u, r, i;
+
+    function newCalculation() {
+        var p = document.getElementById("calculus");
+        values = ["U", "R", "I"];
+        u = 0;
+        r = 0;
+        i = 0;
+        indexOfValueToSolve = Math.floor(Math.random() * values.length);
+        var knownValues = [...values]; // copy array so the original is not modified
+        knownValues.splice(indexOfValueToSolve, 1);
+        var outputString = "";
+        for(var j = 0; j< knownValues.length; j++) {
+            if( knownValues[j] == "U") { // U
+                u = Math.floor(Math.random() * (230 - 1 + 1)) + 1;
+                outputString += " U = " + u;
+            }
+            if( knownValues[j] == "R") { // R
+                r = Math.floor(Math.random() * (5000 - 1 + 1)) + 1;
+                outputString += " R = " + r;
+            }
+            if( knownValues[j] == "I") { // I
+                i = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
+                outputString += " I = " + i;
+            }
+        }
+        p.innerHTML = "<h2>New Calculation</h2> Solve " + values[indexOfValueToSolve] +
+            " if known values are " + outputString;
+
+        input.value = ""; // Clear the input field
+    }
+
+    function checkAnswer() {
+        var answer = parseFloat(input.value);
+        var correctAnswer;
+        if (values[indexOfValueToSolve] == "U") {
+            correctAnswer = (r * i).toFixed(2);
+        } else if (values[indexOfValueToSolve] == "R") {
+            correctAnswer = (u / i).toFixed(2);
+        } else if (values[indexOfValueToSolve] == "I") {
+            correctAnswer = (u / r).toFixed(2);
+        }
+        if (parseFloat(answer.toFixed(2)) === parseFloat(correctAnswer)) {
+            alert('Correct!');
+            newCalculation(); // Generate a new calculation if the answer is correct
+        } else {
+            alert('Incorrect. Try again.');
+        }
+    }
+
+    btn.addEventListener('click', checkAnswer); // Check the answer when the button is clicked
+
+    newCalculation(); // Generate the first calculation when the page loads
+    </script>
 </body>
-<script>
-
-
-
-</script>
 </html>

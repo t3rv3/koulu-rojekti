@@ -36,3 +36,24 @@
         width: 55%;
     border-radius: 8px;
 }
+.kuva2 {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    width: 100px;
+    position: relative;
+    left: 10%;
+    height: auto;
+}
+.border2 {
+    margin: 0 auto;
+    width: 70%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px #ccc;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
