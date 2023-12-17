@@ -30,7 +30,7 @@
         r = 0;
         i = 0;
         indexOfValueToSolve = Math.floor(Math.random() * values.length);
-        var knownValues = [...values]; // copy array so the original is not modified
+        var knownValues = [...values];
         knownValues.splice(indexOfValueToSolve, 1);
         var outputString = "";
         for(var j = 0; j< knownValues.length; j++) {
@@ -50,7 +50,7 @@
         p.innerHTML = "<h2>New Calculation 2 decimal accuracy</h2> Solve " + values[indexOfValueToSolve] +
             " if known values are " + outputString;
 
-        input.value = ""; // Clear the input field
+        input.value = "";
     }
 
     function checkAnswer() {
@@ -58,22 +58,22 @@
         var correctAnswer;
         if (values[indexOfValueToSolve] == "U") {
             correctAnswer = (r * i).toFixed(2);
-        } else if (values[indexOfValueToSolve] == "R") {
+        } else if (values[indexOfValueToSolve] == "R") { //laskut
             correctAnswer = (u / i).toFixed(2);
         } else if (values[indexOfValueToSolve] == "I") {
             correctAnswer = (u / r).toFixed(2);
         }
         if (parseFloat(answer.toFixed(2)) === parseFloat(correctAnswer)) {
             alert('Correct!');
-            newCalculation(); // Generate a new calculation if the answer is correct
+            newCalculation();
         } else {
             alert('Incorrect. Try again.');
         }
     }
 
-    btn.addEventListener('click', checkAnswer); // Check the answer when the button is clicked
+    btn.addEventListener('click', checkAnswer);
 
-    newCalculation(); // Generate the first calculation when the page loads
+    newCalculation();
     </script>
 </body>
 </html>
